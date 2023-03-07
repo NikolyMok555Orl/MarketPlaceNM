@@ -1,8 +1,6 @@
 package com.example.marketplacenm.item.data.component
 
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -17,8 +15,7 @@ import com.example.marketplacenm.ui.theme.MarketPlaceNMTheme
 @Composable
 fun MainButtonUI(text:String, onClick:()->Unit, modifier: Modifier=Modifier) {
     Button(onClick = onClick,
-        modifier
-            .size(width = 289.dp, height = 46.dp)
+        modifier.fillMaxWidth().height(46.dp)
             .clip(RoundedCornerShape(15.dp))) {
         Text(text)
     }
