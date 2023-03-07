@@ -18,9 +18,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.marketplacenm.ui.theme.MarketPlaceNMTheme
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.TextFieldDefaults.indicatorLine
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 
 @ExperimentalMaterialApi
@@ -37,31 +39,38 @@ fun TextFieldAppUI(
     // and to the decoration box for proper styling and sizing
     val enabled = true
     val singleLine = true
-    val passwordTransformation = PasswordVisualTransformation()
-    BasicTextField(
-        value = value,
-        onValueChange = onTextValueChanged,
-        modifier = modifier.size(width = 289.dp, height = 29.dp).clip(RoundedCornerShape(15.dp)).background(MaterialTheme.colors.surface),
-       // visualTransformation = passwordTransformation,
-        // internal implementation of the BasicTextField will dispatch focus events
-       // interactionSource = interactionSource,
-        singleLine = singleLine
-    ) {
-        TextFieldDefaults.TextFieldDecorationBox(
-            value=value,
-            enabled=enabled,
-            singleLine = singleLine,
-            placeholder = {if(placeholder!=null) Text(text = placeholder, textAlign = TextAlign.Center,modifier= modifier.fillMaxWidth())} ,
+   // val passwordTransformation = PasswordVisualTransformation()
+        BasicTextField(
+            value = value,
+            onValueChange = onTextValueChanged,
+            modifier = modifier.fillMaxWidth().height(29.dp)
+                .clip(RoundedCornerShape(15.dp))
+                .background(MaterialTheme.colors.surface),
+            // visualTransformation = passwordTransformation,
+            // internal implementation of the BasicTextField will dispatch focus events
             interactionSource = interactionSource,
-            innerTextField = it,
-            visualTransformation = VisualTransformation.None,
-            contentPadding = TextFieldDefaults.textFieldWithoutLabelPadding(
-                start = 14.dp, end = 14.dp, top = 0.dp, bottom = 0.dp
+            singleLine = singleLine
+        ) {
+            TextFieldDefaults.TextFieldDecorationBox(
+                value = value,
+                enabled = enabled,
+                singleLine = singleLine,
+                placeholder = {
+                    if (placeholder != null)
+                        Text(
+                            text = placeholder,
+                            textAlign = TextAlign.Center,
+                            modifier=Modifier.fillMaxWidth()
+                        )
+                },
+                interactionSource = interactionSource,
+                innerTextField = it,
+                visualTransformation = VisualTransformation.None,
+                contentPadding = TextFieldDefaults.textFieldWithoutLabelPadding(
+                    start = 14.dp, end = 14.dp, top = 0.dp, bottom = 0.dp
+                )
             )
-        )
-    }
-
-
+        }
 }
 
 
