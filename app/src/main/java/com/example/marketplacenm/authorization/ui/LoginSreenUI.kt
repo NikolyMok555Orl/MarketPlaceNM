@@ -10,14 +10,29 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.marketplacenm.MAIN
 import com.example.marketplacenm.item.data.component.MainButtonUI
 import com.example.marketplacenm.item.data.component.TextFieldAppUI
+import com.example.marketplacenm.navigation.Screen
 import com.example.marketplacenm.ui.theme.MarketPlaceNMTheme
 
 
+
+
+@Composable
+fun LoginScreenUI(navController: NavController = rememberNavController(), loginVM:LoginVM= viewModel(),
+                  modifier: Modifier=Modifier){
+
+
+    LoginScreenUI({navController.navigate(Screen.Home.route)},modifier)
+}
+
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun LoginScreenUI(modifier: Modifier=Modifier){
+fun LoginScreenUI(toLogin:()->Unit,modifier: Modifier=Modifier){
 
     Column(modifier=modifier.fillMaxSize()) {
 
@@ -37,7 +52,7 @@ fun LoginScreenUI(modifier: Modifier=Modifier){
             modifier = Modifier.padding(bottom = 35.dp)
         )
 
-        MainButtonUI("Sign in", {},  modifier = Modifier.padding(bottom = 15.dp))
+        MainButtonUI("Login", toLogin,  modifier = Modifier.padding(bottom = 15.dp))
     }
 
 

@@ -16,20 +16,30 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.marketplacenm.LOGIN
 import com.example.marketplacenm.R
 import com.example.marketplacenm.item.data.component.MainButtonUI
 import com.example.marketplacenm.item.data.component.TextFieldAppUI
 import com.example.marketplacenm.ui.theme.MarketPlaceNMTheme
 
 
+@Composable
+fun SignScreenUI(navController: NavController=rememberNavController(), singVM:SignVM= viewModel(), modifier: Modifier=Modifier){
+
+    SignScreenUI({
+        navController.navigate(LOGIN)
+    },modifier)
+}
+
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun SignScreenUI(modifier: Modifier=Modifier){
-
+fun SignScreenUI(navToLogin:()->Unit,modifier: Modifier=Modifier){
     val firs_name= remember {
         mutableStateOf("")
     }
-
     Column(verticalArrangement = Arrangement.Center,horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .fillMaxSize()
@@ -64,7 +74,7 @@ fun SignScreenUI(modifier: Modifier=Modifier){
             .fillMaxWidth()
             .padding(bottom = 70.dp)) {
             Text(text = "Already have an account?", style=MaterialTheme.typography.overline.copy(color =MaterialTheme.colors.onSecondary))
-            TextButton(onClick = { /*TODO*/ }, contentPadding = PaddingValues(0.dp), modifier = Modifier
+            TextButton(onClick =navToLogin, contentPadding = PaddingValues(0.dp), modifier = Modifier
                 .height(16.dp)
                 .padding(0.dp)) {
                 Text(text = "Log in", style=MaterialTheme.typography.overline)

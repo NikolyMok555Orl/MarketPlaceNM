@@ -16,9 +16,22 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
+import com.example.marketplacenm.authorization.ui.LoginVM
 import com.example.marketplacenm.profile.ui.component.ItemMenuProfileUI
 import com.example.marketplacenm.ui.theme.MarketPlaceNMTheme
+
+
+@Composable
+fun ProfileScreenUI(navController: NavController = rememberNavController(), profileVM: ProfileVM = viewModel(),
+                  modifier: Modifier=Modifier){
+
+
+    ProfileScreenUI(modifier)
+}
 
 
 @Composable

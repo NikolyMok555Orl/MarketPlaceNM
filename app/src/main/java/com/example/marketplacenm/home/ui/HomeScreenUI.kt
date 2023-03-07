@@ -12,9 +12,23 @@ import androidx.compose.material.icons.filled.List
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.marketplacenm.item.data.component.TextFieldAppUI
+import com.example.marketplacenm.profile.ui.ProfileVM
 import com.example.marketplacenm.ui.theme.MarketPlaceNMTheme
+
+
+
+@Composable
+fun HomeScreenUI(navController: NavController = rememberNavController(), homeVM: HomeVM = viewModel(),
+                    modifier: Modifier=Modifier){
+
+
+    HomeScreenUI(modifier)
+}
 
 
 @OptIn(ExperimentalMaterialApi::class)
