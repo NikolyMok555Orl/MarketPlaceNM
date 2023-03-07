@@ -7,10 +7,23 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
+import com.example.marketplacenm.home.ui.HomeVM
 import com.example.marketplacenm.item.data.component.MainButtonUI
 import com.example.marketplacenm.ui.theme.MarketPlaceNMTheme
 
+
+
+@Composable
+fun ItemScreenUI(navController: NavController = rememberNavController(), itemVM: ItemVM = viewModel(),
+                 modifier: Modifier=Modifier){
+
+
+    ItemScreenUI(modifier)
+}
 
 @Composable
 fun ItemScreenUI(modifier: Modifier=Modifier){
