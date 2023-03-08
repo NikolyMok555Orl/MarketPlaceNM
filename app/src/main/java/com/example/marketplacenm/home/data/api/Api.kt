@@ -11,21 +11,21 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import java.util.concurrent.TimeUnit
 
-interface Api {
+interface Api:ApiApp {
 
         @GET("/v3/cc0071a1-f06e-48fa-9e90-b1c2a61eaca7")
-        suspend fun getLatest(): List<Latest>
+        override suspend fun getLatest(): List<Latest>
 
         @GET("/v3/a9ceeb6e-416d-4352-bde6-2203416576ac")
-        suspend fun getSale(): ItemsSale
+        override suspend fun getSale(): ItemsSale
 
 
         @GET("/v3/f7f99d04-4971-45d5-92e0-70333383c239")
-        suspend fun getDetails(): DetailsItem
+        override suspend fun getDetails(): DetailsItem
 
 
         @GET("/v3/4c9cd822-9479-4509-803d-63197e5a9e19")
-        suspend fun search(): List<String>
+        override suspend fun search(): List<String>
 
 
         companion object {
@@ -65,5 +65,22 @@ interface Api {
                         return api!!
                 }
         }
+
+}
+
+
+interface ApiApp {
+
+
+        suspend fun getLatest(): List<Latest>
+
+
+        suspend fun getSale(): ItemsSale
+
+
+        suspend fun getDetails(): DetailsItem
+
+
+        suspend fun search(): List<String>
 
 }
