@@ -19,10 +19,11 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.marketplacenm.LOGIN
+
 import com.example.marketplacenm.R
 import com.example.marketplacenm.item.data.component.MainButtonUI
 import com.example.marketplacenm.item.data.component.TextFieldAppUI
+import com.example.marketplacenm.navigation.Screen
 import com.example.marketplacenm.ui.theme.MarketPlaceNMTheme
 
 
@@ -30,7 +31,7 @@ import com.example.marketplacenm.ui.theme.MarketPlaceNMTheme
 fun SignScreenUI(navController: NavController=rememberNavController(), singVM:SignVM= viewModel(), modifier: Modifier=Modifier){
 
     SignScreenUI({
-        navController.navigate(LOGIN)
+        navController.navigate(Screen.Login.route)
     },modifier)
 }
 

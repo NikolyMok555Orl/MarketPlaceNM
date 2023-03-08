@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -13,7 +12,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.marketplacenm.MAIN
 import com.example.marketplacenm.item.data.component.MainButtonUI
 import com.example.marketplacenm.item.data.component.TextFieldAppUI
 import com.example.marketplacenm.navigation.Screen
@@ -27,7 +25,7 @@ fun LoginScreenUI(navController: NavController = rememberNavController(), loginV
                   modifier: Modifier=Modifier){
 
 
-    LoginScreenUI({navController.navigate(Screen.Home.route)},modifier)
+    LoginScreenUI({navController.navigate(Screen.ScreenMenu.Home.route)},modifier)
 }
 
 @OptIn(ExperimentalMaterialApi::class)
