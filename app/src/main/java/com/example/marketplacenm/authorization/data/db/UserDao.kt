@@ -1,13 +1,12 @@
 package com.example.marketplacenm.authorization.data.db
 
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
 
     @Query("SELECT * FROM user WHERE firstName = :firstName")
-    fun getUserByFirstName(firstName: String): Flow<User?>
+    fun getUserByFirstName(firstName: String): User?
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insertUser(user: User)
@@ -16,5 +15,5 @@ interface UserDao {
     suspend fun deleteUser(user:User)
 
     @Update
-    suspend fun updateAvatar(user:User)
+    suspend fun update(user:User)
 }
