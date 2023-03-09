@@ -9,7 +9,7 @@ import kotlinx.coroutines.SupervisorJob
 class App:Application() {
 
     private val applicationScope = CoroutineScope(SupervisorJob())
-    private val database by lazy { ShopDb.getDatabase(this, applicationScope) }
+    private val database by lazy { ShopDb.getDatabase(this) }
 
 
     override fun onCreate() {

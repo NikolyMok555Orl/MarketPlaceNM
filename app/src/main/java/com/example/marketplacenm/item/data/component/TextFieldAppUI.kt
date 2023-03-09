@@ -21,6 +21,8 @@ import androidx.compose.foundation.background
 
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.TextFieldDefaults.indicatorLine
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -31,7 +33,7 @@ fun TextFieldAppUI(
     value: String,
     onTextValueChanged: (String) -> Unit,
     placeholder: String?,
-
+    isError:Boolean=false,
     modifier: Modifier = Modifier
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -63,6 +65,9 @@ fun TextFieldAppUI(
                             modifier=Modifier.fillMaxWidth()
                         )
                 },
+                isError = isError,
+                trailingIcon = {if(isError) Icon(Icons.Default.Warning, "error") else null},
+                leadingIcon = {},
                 interactionSource = interactionSource,
                 innerTextField = it,
                 visualTransformation = VisualTransformation.None,

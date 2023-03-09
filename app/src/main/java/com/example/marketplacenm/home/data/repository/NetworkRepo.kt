@@ -6,6 +6,7 @@ import com.example.marketplacenm.home.data.api.ApiApp
 import com.example.marketplacenm.home.data.js.DetailsItem
 import com.example.marketplacenm.home.data.js.ItemsSale
 import com.example.marketplacenm.home.data.js.Latest
+import com.example.marketplacenm.home.data.js.Latestes
 import com.example.marketplacenm.util.NetworkResult
 import com.example.marketplacenm.util.ResultResponse
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,7 @@ import kotlinx.coroutines.flow.*
 
 interface NetworkRepo  {
 
-        fun getLatest() : Flow<NetworkResult<out List<Latest>, out String>>
+        fun getLatest() : Flow<NetworkResult<out Latestes, out String>>
         fun getSale() : Flow<NetworkResult< out ItemsSale,out String>>
         fun getDetails() : Flow<NetworkResult<out DetailsItem,out String>>
         fun search(string: String) : Flow<NetworkResult<out List<String>,out String>>

@@ -4,9 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,23 +22,50 @@ import com.example.marketplacenm.R
 import com.example.marketplacenm.item.data.component.MainButtonUI
 import com.example.marketplacenm.item.data.component.TextFieldAppUI
 import com.example.marketplacenm.navigation.Screen
+import com.example.marketplacenm.ui.component.ErrorDialogUI
 import com.example.marketplacenm.ui.theme.MarketPlaceNMTheme
 
 
 @Composable
 fun SignScreenUI(navController: NavController=rememberNavController(), singVM:SignVM= viewModel(), modifier: Modifier=Modifier){
 
-    SignScreenUI({
+    val state=singVM.state.collectAsState()
+
+    val error:MutableState<String?> = remember {
+        mutableStateOf(null)
+    }
+    val showAlert= remember {
+        mutableStateOf(false)
+    }
+
+    LaunchedEffect(key1 = true){
+        singVM.sharedFlowError.collect {
+            error.value=it
+            showAlert.value=true
+        }
+    }
+    LaunchedEffect(key1 = state.value){
+        if(state.value.isLogin){
+            navController.navigate(Screen.ScreenMenu.Home.route)
+        }
+    }
+
+
+    SignScreenUI(state=state.value,
+        changeFirstName=singVM::setFirstName,
+        changeLastName=singVM::setLastName,
+        changeEmail=singVM::setEmail,
+        navToLogin={
         navController.navigate(Screen.Login.route)
-    },modifier)
+    }, sign = singVM::sign, showAlert=showAlert.value ,error=error.value?:"Unknow error", closeAlert={showAlert.value=false}, modifier)
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun SignScreenUI(navToLogin:()->Unit,modifier: Modifier=Modifier){
-    val firs_name= remember {
-        mutableStateOf("")
-    }
+fun SignScreenUI(state: SignStateUI, changeFirstName:(fm:String)->Unit, changeLastName:(lm:String)->Unit,
+                 changeEmail:(email:String)->Unit, navToLogin:()->Unit,sign:()->Unit,
+                 showAlert:Boolean, error: String, closeAlert:()->Unit,
+                 modifier: Modifier=Modifier){
     Column(verticalArrangement = Arrangement.Center,horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .fillMaxSize()
@@ -48,27 +73,31 @@ fun SignScreenUI(navToLogin:()->Unit,modifier: Modifier=Modifier){
            Text(text = "Sign in", style = MaterialTheme.typography.h5.copy(fontSize = 26.sp, letterSpacing = -(0.3).sp ), modifier=Modifier.padding(start = 112.dp,
                end = 113.dp, bottom = 60.dp) )
 
+        if(showAlert)
+            ErrorDialogUI(error = error ,closeAlert)
+
         Column(Modifier.padding(start = 42.dp, end=42.dp)) {
             TextFieldAppUI(
-                value = firs_name.value,
-                { firs_name.value = it },
+                value = state.firstName,
+                changeFirstName,
                 placeholder = "First name",
                 modifier = Modifier.padding(bottom = 35.dp)
             )
             TextFieldAppUI(
-                value = "",
-                {},
+                value = state.lastName,
+                changeLastName,
                 placeholder = "Last name",
                 modifier = Modifier.padding(bottom = 35.dp)
             )
             TextFieldAppUI(
-                value = "",
-                {},
+                value =state.email,
+                changeEmail,
                 placeholder = "Email",
+                isError = state.emailIsError,
                 modifier = Modifier.padding(bottom = 35.dp)
             )
 
-            MainButtonUI("Sign in", {},  modifier = Modifier.padding(bottom = 15.dp))
+            MainButtonUI("Sign in", sign,  modifier = Modifier.fillMaxWidth().padding(bottom = 15.dp))
 
 
         Row( verticalAlignment = Alignment.CenterVertically,modifier= Modifier

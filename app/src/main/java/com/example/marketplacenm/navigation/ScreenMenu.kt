@@ -11,6 +11,8 @@ sealed class Screen(val route: String, val showNavBotton:Boolean=true) {
     object  Login:Screen("Login", false)
     object  Main:Screen("main", false)
 
+    object  Item:Screen("main", false)
+
     sealed class ScreenMenu(route: String, val resourceId: Int):Screen(route) {
         object Home : ScreenMenu("home", R.drawable.menu_home)
         object Favorite : ScreenMenu("favorite", R.drawable.menu_favorite)

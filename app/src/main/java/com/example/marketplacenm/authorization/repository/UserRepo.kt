@@ -20,8 +20,9 @@ interface UserRepository {
 
     suspend fun updateAvatar(user: User): Flow<ResultResponse<out Nothing,out String>>
 
+   // suspend fun getAll():List<User>
 
-    fun getCurrentUser(): Flow<String>
+    fun getCurrentUser(): String
 
     suspend fun login(firstName: String)
     suspend fun logout()
@@ -46,6 +47,8 @@ class UserRepositoryImpl(private val db: ShopDb = App.db) : UserRepository {
             db.userDao.insertUser(user)
         }.onSuccess {
             emit(ResultResponse(true, null, null))
+            //TODO может отдельно
+            login(user.firstName)
         }.onFailure {
            emit(ResultResponse(false, null, it.message ?: "Ошибка при записи  пользователя в бд"))
         }
@@ -71,13 +74,14 @@ class UserRepositoryImpl(private val db: ShopDb = App.db) : UserRepository {
         }.onFailure {
              emit(ResultResponse(false, null, it.message ?: "Ошибка при обновление данных"))
         }
-
     }.flowOn(Dispatchers.IO)
 
-    override fun getCurrentUser(): Flow<String> {
-        return flow {
-            emit(Setting.USER_SIGNED)
-        }
+   /* override suspend fun getAll(): List<User> {
+       return  db.userDao.getAll()
+    }*/
+
+    override fun getCurrentUser(): String {
+       return    Setting.userSigned?:""
     }
 
     override suspend fun login(firstName: String) {
