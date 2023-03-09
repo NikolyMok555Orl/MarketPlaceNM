@@ -21,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.marketplacenm.authorization.ui.LoginScreenUI
 import com.example.marketplacenm.authorization.ui.SignScreenUI
 import com.example.marketplacenm.home.ui.HomeScreenUI
+import com.example.marketplacenm.item.ui.ItemScreenUI
 import com.example.marketplacenm.navigation.*
 import com.example.marketplacenm.profile.ui.ProfileScreenUI
 import com.example.marketplacenm.ui.theme.MarketPlaceNMTheme
@@ -71,6 +72,10 @@ fun MainScreen(navController: NavHostController = rememberNavController(), modif
                 }
                 composable(Screen.Main.route) {
                     MainScreen(navController)
+                }
+
+                composable(Screen.Item.route) {
+                    ItemScreenUI(navController)
                 }
             }
         }

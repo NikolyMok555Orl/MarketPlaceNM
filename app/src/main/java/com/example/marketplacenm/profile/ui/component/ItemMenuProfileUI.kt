@@ -1,6 +1,7 @@
 package com.example.marketplacenm.profile.ui.component
 
 import android.icu.text.CaseMap.Title
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -11,8 +12,8 @@ import com.example.marketplacenm.ui.theme.MarketPlaceNMTheme
 
 
 @Composable
-fun ItemMenuProfileUI( icon:Int,title:String, modifier: Modifier=Modifier){
-    Row(modifier=modifier) {
+fun ItemMenuProfileUI( icon:Int,title:String,onClick:()->Unit, modifier: Modifier=Modifier){
+    Row(modifier=modifier.clickable { onClick() }) {
         Text(text = title)
     }
 }
@@ -22,6 +23,6 @@ fun ItemMenuProfileUI( icon:Int,title:String, modifier: Modifier=Modifier){
 @Composable
 private fun ItemLatestUIPreivew(){
     MarketPlaceNMTheme() {
-        ItemMenuProfileUI(0, "Trade store")
+        ItemMenuProfileUI(0, "Trade store", {})
     }
 }

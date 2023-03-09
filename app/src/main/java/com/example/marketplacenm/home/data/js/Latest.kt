@@ -8,5 +8,7 @@ data class Latest(
     val price: Int
 )
 
+data class Latestes(val latest:List<Latest>)
+
 
 

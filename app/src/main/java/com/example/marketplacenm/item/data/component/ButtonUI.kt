@@ -15,7 +15,7 @@ import com.example.marketplacenm.ui.theme.MarketPlaceNMTheme
 @Composable
 fun MainButtonUI(text:String, onClick:()->Unit, modifier: Modifier=Modifier) {
     Button(onClick = onClick,
-        modifier.fillMaxWidth().height(46.dp)
+        modifier.height(46.dp)
             .clip(RoundedCornerShape(15.dp))) {
         Text(text)
     }

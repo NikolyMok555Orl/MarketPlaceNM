@@ -3,6 +3,7 @@ package com.example.marketplacenm.home.data.api
 import com.example.marketplacenm.home.data.js.DetailsItem
 import com.example.marketplacenm.home.data.js.ItemsSale
 import com.example.marketplacenm.home.data.js.Latest
+import com.example.marketplacenm.home.data.js.Latestes
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit
 interface Api:ApiApp {
 
         @GET("/v3/cc0071a1-f06e-48fa-9e90-b1c2a61eaca7")
-        override suspend fun getLatest(): List<Latest>
+        override suspend fun getLatest(): Latestes
 
         @GET("/v3/a9ceeb6e-416d-4352-bde6-2203416576ac")
         override suspend fun getSale(): ItemsSale
@@ -72,7 +73,7 @@ interface Api:ApiApp {
 interface ApiApp {
 
 
-        suspend fun getLatest(): List<Latest>
+        suspend fun getLatest(): Latestes
 
 
         suspend fun getSale(): ItemsSale

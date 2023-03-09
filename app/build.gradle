@@ -92,4 +92,8 @@ dependencies {
 
 
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
+
+    //Перезагрузка
+    implementation "com.google.accompanist:accompanist-swiperefresh:0.24.13-rc"
+
 }
