@@ -19,15 +19,18 @@ class ItemVM(private val repo: NetworkRepo = AppNetworkRepo()
     var state: StateFlow<ItemStateUI> = _state
 
 
-
-    fun selectImage(index:Int){
-        _state.value=_state.value.copy(selectImage = index)
-    }
-
     fun selectColor(index:Int){
         _state.value=_state.value.copy(selectColor = index)
     }
 
+
+    fun changeQuantity(q:Double){
+       if(_state.value.quantity+q>=0){
+           _state.value=_state.value.copy(quantity = (_state.value.quantity+q))
+       }else{
+           _state.value=_state.value.copy(quantity = 0.0)
+       }
+    }
     init {
         loadDetailsItem()
     }
@@ -36,7 +39,7 @@ class ItemVM(private val repo: NetworkRepo = AppNetworkRepo()
         viewModelScope.launch {
             repo.getDetails().collect{
                 if(it.success){
-                    _state.value=_state.value.copy(detailsItem = it.data, selectColor = 0, selectImage = 0)
+                    _state.value=_state.value.copy(detailsItem = it.data, selectColor = 0)
                 }
             }
 
@@ -49,7 +52,11 @@ class ItemVM(private val repo: NetworkRepo = AppNetworkRepo()
 
 
 
-data class ItemStateUI(val detailsItem: DetailsItem?=null, val selectColor:Int?=null, val selectImage:Int?=null, val quantity:Double=0.0, val isLike:Boolean=false  )
+data class ItemStateUI(val detailsItem: DetailsItem?=null, val selectColor:Int?=null,  val quantity:Double=0.0 ){
+
+    fun getSum()= (detailsItem?.price?:0) * quantity
+
+}
 
 
 

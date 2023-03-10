@@ -11,7 +11,7 @@ sealed class Screen(val route: String, val showNavBotton:Boolean=true) {
     object  Login:Screen("Login", false)
     object  Main:Screen("main", false)
 
-    object  Item:Screen("main", false)
+    object  Item:Screen("item" )
 
     sealed class ScreenMenu(route: String, val resourceId: Int):Screen(route) {
         object Home : ScreenMenu("home", R.drawable.menu_home)
@@ -34,7 +34,7 @@ val itemsMenu = listOf(
 
 
 val allScreen= (mutableListOf(
-    Screen.Main, Screen.Sign, Screen.Login
+    Screen.Main, Screen.Sign, Screen.Login, Screen.Item
 ).apply {
     addAll(itemsMenu)
 }).toList()

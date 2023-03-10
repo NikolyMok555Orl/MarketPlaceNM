@@ -1,9 +1,6 @@
 package com.example.marketplacenm.home.data.api
 
-import com.example.marketplacenm.home.data.js.DetailsItem
-import com.example.marketplacenm.home.data.js.ItemsSale
-import com.example.marketplacenm.home.data.js.Latest
-import com.example.marketplacenm.home.data.js.Latestes
+import com.example.marketplacenm.home.data.js.*
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,7 +23,7 @@ interface Api:ApiApp {
 
 
         @GET("/v3/4c9cd822-9479-4509-803d-63197e5a9e19")
-        override suspend fun search(): List<String>
+        override suspend fun search(): HintsWord
 
 
         companion object {
@@ -82,6 +79,6 @@ interface ApiApp {
         suspend fun getDetails(): DetailsItem
 
 
-        suspend fun search(): List<String>
+        suspend fun search(): HintsWord
 
 }
