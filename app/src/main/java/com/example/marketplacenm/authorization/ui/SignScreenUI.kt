@@ -70,7 +70,7 @@ fun SignScreenUI(state: SignStateUI, changeFirstName:(fm:String)->Unit, changeLa
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())) {
-           Text(text = "Sign in", style = MaterialTheme.typography.h5.copy(fontSize = 26.sp, letterSpacing = -(0.3).sp ), modifier=Modifier.padding(start = 112.dp,
+           Text(text = "Sign in", style = MaterialTheme.typography.h5, modifier=Modifier.padding(start = 112.dp,
                end = 113.dp, bottom = 60.dp) )
 
         if(showAlert)
@@ -107,7 +107,7 @@ fun SignScreenUI(state: SignStateUI, changeFirstName:(fm:String)->Unit, changeLa
             TextButton(onClick =navToLogin, contentPadding = PaddingValues(0.dp), modifier = Modifier
                 .height(16.dp)
                 .padding(0.dp)) {
-                Text(text = "Log in", style=MaterialTheme.typography.overline)
+                Text(text = "Log in", style=MaterialTheme.typography.overline.copy(color = Color(0xFF254FE6)))
             }
         }
         }

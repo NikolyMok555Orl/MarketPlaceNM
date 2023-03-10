@@ -35,7 +35,8 @@ fun TextFieldAppUI(
     placeholder: String?,
     isError: Boolean = false,
     trailingIcon: @Composable (() -> Unit)? = null,
-    keyboardActions: KeyboardActions?=null,
+    visualTransformation: VisualTransformation=VisualTransformation.None,
+    keyboardActions: KeyboardActions=KeyboardActions.Default,
     modifier: Modifier = Modifier
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -53,7 +54,7 @@ fun TextFieldAppUI(
             .height(29.dp)
             .clip(RoundedCornerShape(15.dp))
             .background(MaterialTheme.colors.surface),
-        // visualTransformation = passwordTransformation,
+         visualTransformation = visualTransformation,
         // internal implementation of the BasicTextField will dispatch focus events
         interactionSource = interactionSource,
         singleLine = singleLine,
@@ -72,7 +73,6 @@ fun TextFieldAppUI(
                     )
             },
             isError = isError,
-            // { if(isError) Icon(Icons.Default.Warning, "error") else null}
             trailingIcon = trailingIcon
                 ?: if (isError) {
                     { ErrorEconUI() }
@@ -82,7 +82,7 @@ fun TextFieldAppUI(
             leadingIcon = {},
             interactionSource = interactionSource,
             innerTextField = it,
-            visualTransformation = VisualTransformation.None,
+            visualTransformation = visualTransformation,
             contentPadding = TextFieldDefaults.textFieldWithoutLabelPadding(
                 start = 14.dp, end = 14.dp, top = 0.dp, bottom = 0.dp
             )
