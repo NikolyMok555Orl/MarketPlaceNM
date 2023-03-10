@@ -33,7 +33,9 @@ fun TextFieldAppUI(
     value: String,
     onTextValueChanged: (String) -> Unit,
     placeholder: String?,
-    isError:Boolean=false,
+    isError: Boolean = false,
+    trailingIcon: @Composable (() -> Unit)? = null,
+    keyboardActions: KeyboardActions?=null,
     modifier: Modifier = Modifier
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -41,43 +43,57 @@ fun TextFieldAppUI(
     // and to the decoration box for proper styling and sizing
     val enabled = true
     val singleLine = true
-   // val passwordTransformation = PasswordVisualTransformation()
-        BasicTextField(
+
+    // val passwordTransformation = PasswordVisualTransformation()
+    BasicTextField(
+        value = value,
+        onValueChange = onTextValueChanged,
+        modifier = modifier
+            .fillMaxWidth()
+            .height(29.dp)
+            .clip(RoundedCornerShape(15.dp))
+            .background(MaterialTheme.colors.surface),
+        // visualTransformation = passwordTransformation,
+        // internal implementation of the BasicTextField will dispatch focus events
+        interactionSource = interactionSource,
+        singleLine = singleLine,
+        keyboardActions= keyboardActions ?: KeyboardActions.Default
+    ) {
+        TextFieldDefaults.TextFieldDecorationBox(
             value = value,
-            onValueChange = onTextValueChanged,
-            modifier = modifier.fillMaxWidth().height(29.dp)
-                .clip(RoundedCornerShape(15.dp))
-                .background(MaterialTheme.colors.surface),
-            // visualTransformation = passwordTransformation,
-            // internal implementation of the BasicTextField will dispatch focus events
-            interactionSource = interactionSource,
-            singleLine = singleLine
-        ) {
-            TextFieldDefaults.TextFieldDecorationBox(
-                value = value,
-                enabled = enabled,
-                singleLine = singleLine,
-                placeholder = {
-                    if (placeholder != null)
-                        Text(
-                            text = placeholder,
-                            textAlign = TextAlign.Center,
-                            modifier=Modifier.fillMaxWidth()
-                        )
+            enabled = enabled,
+            singleLine = singleLine,
+            placeholder = {
+                if (placeholder != null)
+                    Text(
+                        text = placeholder,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+            },
+            isError = isError,
+            // { if(isError) Icon(Icons.Default.Warning, "error") else null}
+            trailingIcon = trailingIcon
+                ?: if (isError) {
+                    { ErrorEconUI() }
+                } else {
+                    {}
                 },
-                isError = isError,
-                trailingIcon = {if(isError) Icon(Icons.Default.Warning, "error") else null},
-                leadingIcon = {},
-                interactionSource = interactionSource,
-                innerTextField = it,
-                visualTransformation = VisualTransformation.None,
-                contentPadding = TextFieldDefaults.textFieldWithoutLabelPadding(
-                    start = 14.dp, end = 14.dp, top = 0.dp, bottom = 0.dp
-                )
+            leadingIcon = {},
+            interactionSource = interactionSource,
+            innerTextField = it,
+            visualTransformation = VisualTransformation.None,
+            contentPadding = TextFieldDefaults.textFieldWithoutLabelPadding(
+                start = 14.dp, end = 14.dp, top = 0.dp, bottom = 0.dp
             )
-        }
+        )
+    }
 }
 
+@Composable
+private fun ErrorEconUI() {
+    Icon(Icons.Default.Warning, "error")
+}
 
 @OptIn(ExperimentalMaterialApi::class)
 @Preview(showBackground = true)

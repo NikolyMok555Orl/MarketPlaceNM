@@ -2,12 +2,10 @@ package com.example.marketplacenm.home.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.Query
 import com.example.marketplacenm.App
 import com.example.marketplacenm.authorization.UserRepository
 import com.example.marketplacenm.authorization.UserRepositoryImpl
 import com.example.marketplacenm.authorization.data.db.User
-import com.example.marketplacenm.authorization.ui.LoginStateUI
 import com.example.marketplacenm.home.data.js.ItemSale
 import com.example.marketplacenm.home.data.js.Latest
 import com.example.marketplacenm.home.data.repository.AppNetworkRepo
@@ -18,7 +16,6 @@ import com.example.marketplacenm.home.ui.component.getBrands
 import com.example.marketplacenm.home.ui.component.getGroup
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeVM(private val networkRepo: NetworkRepo= AppNetworkRepo(), private val userRepository: UserRepository=UserRepositoryImpl(
@@ -34,6 +31,19 @@ class HomeVM(private val networkRepo: NetworkRepo= AppNetworkRepo(), private val
         loadSale()
         loadLates()
         getUser()
+    }
+
+
+    fun search(q:String){
+        _state.value=_state.value.copy(query = q)
+        viewModelScope.launch {
+            networkRepo.search(q).collect{res->
+             if(res.success){
+                 val listRes=res.data?.words?.filter { q in  it }?: emptyList()
+                 _state.value=_state.value.copy(responseSearch = listRes)
+             }
+            }
+        }
     }
 
     private fun getUser() {
