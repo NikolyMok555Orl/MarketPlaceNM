@@ -34,6 +34,10 @@ class LoginVM(private val userRepo: UserRepository = UserRepositoryImpl()):ViewM
         _state.value = _state.value.copy(password = password)
     }
 
+    fun showPass(isShow:Boolean){
+        _state.value = _state.value.copy(showPass = isShow)
+    }
+
     fun login(){
         viewModelScope.launch {
             if (_state.value.firstName.isEmpty()) {
@@ -67,4 +71,4 @@ class LoginVM(private val userRepo: UserRepository = UserRepositoryImpl()):ViewM
 }
 
 
-data class LoginStateUI(val firstName:String, val password:String, val isLogin:Boolean=false)
+data class LoginStateUI(val firstName:String, val password:String, val showPass:Boolean=false, val isLogin:Boolean=false)

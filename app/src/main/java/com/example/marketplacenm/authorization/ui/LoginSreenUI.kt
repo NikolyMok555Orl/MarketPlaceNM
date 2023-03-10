@@ -1,18 +1,23 @@
 package com.example.marketplacenm.authorization.ui
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.marketplacenm.R
 import com.example.marketplacenm.item.data.component.MainButtonUI
 import com.example.marketplacenm.item.data.component.TextFieldAppUI
 import com.example.marketplacenm.navigation.Screen
@@ -57,6 +62,7 @@ fun LoginScreenUI(
             showAlert.value = false
         },
         toLogin = loginVM::login,
+        changeShowPass=loginVM::showPass,
         modifier = modifier
     )
 }
@@ -71,13 +77,19 @@ fun LoginScreenUI(
     error: String,
     closeAlert: () -> Unit,
     toLogin: () -> Unit,
+    changeShowPass:(newVal:Boolean)->Unit,
     modifier: Modifier = Modifier
 ) {
 
-    Column(modifier = modifier.fillMaxSize()) {
+    Column(verticalArrangement = Arrangement.Center,modifier = modifier
+        .fillMaxSize()
+        .padding(horizontal = 42.dp)) {
         if(showAlert)
             ErrorDialogUI(error = error ,closeAlert)
-        Text("Welcome back")
+        Text(text = "Welcome back", textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.h5,modifier= Modifier
+                .fillMaxWidth()
+                .padding(bottom = 72.dp))
 
         TextFieldAppUI(
             value = state.firstName,
@@ -90,10 +102,21 @@ fun LoginScreenUI(
             value = state.password,
             changePassword,
             placeholder = "Password",
+            visualTransformation = if (state.showPass)  VisualTransformation.None else PasswordVisualTransformation() ,
+            trailingIcon = {
+                Icon(painter = painterResource(id = if (state.showPass) R.drawable.eye else R.drawable.eye_off),
+                    contentDescription = null,
+                modifier.clickable {
+                    changeShowPass(!state.showPass)
+                })
+
+            },
             modifier = Modifier.padding(bottom = 35.dp)
         )
 
-        MainButtonUI("Login", toLogin, modifier = Modifier.fillMaxWidth().padding(bottom = 15.dp))
+        MainButtonUI("Login", toLogin, modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 15.dp))
     }
 
 
@@ -105,7 +128,15 @@ fun LoginScreenUI(
 fun LoginScreenUIPreview() {
 
     MarketPlaceNMTheme {
-        LoginScreenUI(LoginStateUI("", ""),{}, {}, false, "",{},{} )
+        LoginScreenUI(
+            state = LoginStateUI(firstName = "", password = ""),
+            changeFirstName = {},
+            changePassword = {},
+            showAlert = false,
+            error = "",
+            closeAlert = {},
+            toLogin = {},
+            changeShowPass = {})
 
     }
 
