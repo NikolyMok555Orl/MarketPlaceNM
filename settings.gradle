@@ -14,3 +14,12 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MarketPlaceNM"
 include ':app'
+include ':authorization'
+include ':util'
+include ':store'
+include ':uiGeneral'
+include ':navigation'
+include ':home'
+include ':item'
+include ':profile'
+include ':remote'

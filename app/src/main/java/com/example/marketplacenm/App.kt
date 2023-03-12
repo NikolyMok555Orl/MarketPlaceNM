@@ -1,26 +1,18 @@
 package com.example.marketplacenm
 
 import android.app.Application
-import com.example.marketplacenm.authorization.data.db.ShopDb
-import com.example.marketplacenm.home.data.api.Api
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
+import com.example.store.Setting
 
-class App:Application() {
 
-    private val applicationScope = CoroutineScope(SupervisorJob())
-    private val database by lazy { ShopDb.getDatabase(this) }
+class App:Application(){
 
 
     override fun onCreate() {
         super.onCreate()
-        db = database
         Setting.init(this)
-        api= Api.get()
     }
 
-    companion object {
-        lateinit var db: ShopDb
-        lateinit var api: Api
-    }
+
 }
+
+
