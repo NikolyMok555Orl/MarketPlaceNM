@@ -1,16 +1,18 @@
-package com.example.marketplacenm
+package com.example.navigation
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -18,13 +20,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.marketplacenm.authorization.ui.LoginScreenUI
-import com.example.marketplacenm.authorization.ui.SignScreenUI
-import com.example.marketplacenm.home.ui.HomeScreenUI
-import com.example.marketplacenm.item.ui.ItemScreenUI
-import com.example.marketplacenm.navigation.*
+import com.example.authorization.ui.LoginScreenUI
+import com.example.authorization.ui.SignScreenUI
+import com.example.home.ui.HomeScreenUI
+import com.example.item.ui.ItemScreenUI
 import com.example.marketplacenm.profile.ui.ProfileScreenUI
-import com.example.marketplacenm.ui.theme.MarketPlaceNMTheme
+import com.example.uigeneral.theme.MarketPlaceNMTheme
 
 
 @Composable
@@ -33,6 +34,7 @@ fun MainScreen(navController: NavHostController = rememberNavController(), modif
     val currentDestination = navBackStackEntry?.destination
 
     MarketPlaceNMTheme() {
+
         Scaffold(
             bottomBar = {
                 if( allScreen.find {it.route==currentDestination?.route  }?.showNavBotton==true) {
@@ -65,7 +67,7 @@ fun MainScreen(navController: NavHostController = rememberNavController(), modif
                     ProfileScreenUI(navController)
                 }
                 composable(Screen.Sign.route) {
-                    SignScreenUI(navController)
+                   SignScreenUI(navController)
                 }
                 composable(Screen.Login.route) {
                     LoginScreenUI(navController)
@@ -85,15 +87,22 @@ fun MainScreen(navController: NavHostController = rememberNavController(), modif
 
 @Composable
 private fun AppBottonNavigationUI(navController: NavHostController) {
-    BottomNavigation {
+    BottomNavigation(contentColor = Color(0xFF909090),backgroundColor = Color(0xFFFFFFFF),
+        modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp))
+            .height(63.dp)) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
+        val selected = currentDestination?.route
         itemsMenu.forEach { screen ->
             BottomNavigationItem(
                 icon = {
                     Icon(
                         painter = painterResource(id = screen.resourceId),
-                        contentDescription = null
+                        contentDescription = null,
+                       // tint = if (selected == screen.route) Color(0xFF737297) else Color(0xFF909090),
+                        modifier = Modifier.size(40.dp).clip(CircleShape).
+                        background( if (selected == screen.route) Color(0xFFEEEFF4) else Color(0xFFFFFFFF))
+                            .padding(12.dp)
                     )
                 },
                 label = null,
@@ -112,7 +121,9 @@ private fun AppBottonNavigationUI(navController: NavHostController) {
                         // Restore state when reselecting a previously selected item
                         restoreState = true
                     }
-                }
+                },
+                selectedContentColor = MaterialTheme.colors.primary,
+                unselectedContentColor = Color(0xFF909090)
             )
         }
     }
