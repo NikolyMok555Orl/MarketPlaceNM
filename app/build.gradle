@@ -72,15 +72,6 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
 
-
-
-
-
-
-
-
-
-
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
 
     //Перезагрузка
