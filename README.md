@@ -1,3 +1,8 @@
 # MarketPlaceNM
-Тестовый проект
-<video src='https://github.com/NikolyMok555Orl/MarketPlaceNM/blob/main/video_2023-03-13_09-30-55.mp4' width=180/>
+Многомодульный скелет онлайн магазина.
+Видео использование в гите или же: https://drive.google.com/file/d/1wIFevEDloKgBlrmZzuLUjfgiGWv13RXh/view?usp=share_link
+Возможны небольшие отличие визуала текущего от видео.
+
+
+
+
