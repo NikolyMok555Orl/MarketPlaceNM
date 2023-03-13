@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -90,7 +91,8 @@ fun SignScreenUI(
             .verticalScroll(rememberScrollState())
     ) {
         Text(
-            text = "Sign in", style = MaterialTheme.typography.h5, modifier = Modifier.padding(
+            text = stringResource(id = R.string.sign_in),
+            style = MaterialTheme.typography.h5, modifier = Modifier.padding(
                 start = 112.dp,
                 end = 113.dp, bottom = 60.dp
             )
@@ -105,7 +107,7 @@ fun SignScreenUI(
                 changeFirstName,
                 placeholder = {
                     Text(
-                        text = "First name",
+                        text = stringResource(R.string.first_name),
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.overline.copy(fontSize = 11.sp),
                         modifier = Modifier.fillMaxWidth()
@@ -118,7 +120,7 @@ fun SignScreenUI(
                 changeLastName,
                 placeholder = {
                     Text(
-                        text = "Last name",
+                        text = stringResource(R.string.last_name),
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.overline.copy(fontSize = 11.sp),
                         modifier = Modifier.fillMaxWidth()
@@ -131,7 +133,7 @@ fun SignScreenUI(
                 changeEmail,
                 placeholder ={
                     Text(
-                        text = "Email",
+                        text = stringResource(R.string.email),
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.overline.copy(fontSize = 11.sp),
                         modifier = Modifier.fillMaxWidth()
@@ -142,7 +144,7 @@ fun SignScreenUI(
             )
 
             MainButtonUI(
-                "Sign in",
+                stringResource(R.string.sign_in),
                 sign,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -156,7 +158,7 @@ fun SignScreenUI(
                     .padding(bottom = 70.dp)
             ) {
                 Text(
-                    text = "Already have an account?",
+                    text = stringResource(R.string.already_have_acc),
                     style = MaterialTheme.typography.overline.copy(color = MaterialTheme.colors.onSecondary)
                 )
                 TextButton(
@@ -165,7 +167,7 @@ fun SignScreenUI(
                         .padding(0.dp)
                 ) {
                     Text(
-                        text = "Log in",
+                        text = stringResource(R.string.log_in),
                         style = MaterialTheme.typography.overline.copy(color = Color(0xFF254FE6))
                     )
                 }
@@ -179,7 +181,7 @@ fun SignScreenUI(
             Icon(painter = painterResource(id = R.drawable.google), contentDescription = null)
             TextButton(onClick = { /*TODO*/ }) {
                 Text(
-                    text = "Sign in with Google", style = MaterialTheme.typography.caption.copy(
+                    text = stringResource(R.string.sign_with_google), style = MaterialTheme.typography.caption.copy(
                         color = MaterialTheme.colors.onBackground, fontWeight = FontWeight.Normal
                     )
                 )
@@ -189,7 +191,7 @@ fun SignScreenUI(
             Icon(painter = painterResource(id = R.drawable.apple), contentDescription = null)
             TextButton(onClick = { /*TODO*/ }) {
                 Text(
-                    text = "Sign in with Apple", style = MaterialTheme.typography.caption.copy(
+                    text = stringResource(R.string.sign_with_apple), style = MaterialTheme.typography.caption.copy(
                         color = MaterialTheme.colors.onBackground, fontWeight = FontWeight.Normal
                     )
                 )

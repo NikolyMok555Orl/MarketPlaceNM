@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="reviews">reviews</string>
+    <string name="color">Color:</string>
+    <string name="quantity">Quantity:</string>
+    <string name="addCart">ADD TO CART</string>
+</resources>

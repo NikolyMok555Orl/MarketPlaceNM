@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -63,12 +64,11 @@ fun HomeScreenUI(
     HomeScreenUI(stateUI.value, homeVM::search, showHint.value, {
         showHint.value = false
     }, {
-        navController.navigate(com.example.navigation.Screen.Item.route)
+        navController.navigate(Screen.Item.route)
     }, modifier)
 }
 
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun HomeScreenUI(
     stateUI: HomeStateUI,
@@ -147,57 +147,8 @@ fun HomeScreenUI(
             }
         }
         //Поиск
-        Column(
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.padding(top = 9.dp, bottom = 17.dp, start = 58.dp, end = 58.dp)
-        ) {
-            TextFieldAppUI(value = stateUI.query,
-                onTextValueChanged = search,
-                placeholder = {
-                    Text(
-                        text = "What are you looking for ?",
-                        textAlign = TextAlign.Center,
-                        style = MaterialTheme.typography.overline.copy(
-                            fontSize = 9.sp, fontFamily = FontFamily(
-                                Font(com.example.uigeneral.R.font.poppins)
-                            )
-                        ),
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                },
-                trailingIcon = {
-                    Icon(
-                        imageVector = Icons.Default.Search,
-                        contentDescription = "search"
-                    )
-                },
-                keyboardActions = KeyboardActions(
-                    onSearch = {
-                        hideHint()
-                    }
-                ))
-            if (showHint) {
-                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 56.dp)) {
-                    DropdownMenu(
-                        expanded = showHint,
-                        onDismissRequest = { hideHint() },
-                        properties = PopupProperties(focusable = false),
-                        modifier = Modifier.fillMaxWidth()
-                            .background(color = MaterialTheme.colors.surface.copy(alpha = 1f))
-                    ) {
-                        stateUI.responseSearch.forEachIndexed { _, s ->
-                            Text(text = s, textAlign = TextAlign.Center, modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable {
-                                    search(s)
-                                    hideHint()
-                                })
-                        }
-                    }
-                }
-            }
-        }
-        //Категори
+        SearchBarUI(stateUI, search, hideHint, showHint)
+        //Категории
         LazyRow(
             modifier = Modifier
                 .fillMaxWidth()
@@ -214,20 +165,20 @@ fun HomeScreenUI(
                 .padding(start = 11.dp, top = 29.dp)
         ) {
             if (stateUI.latests.isNotEmpty() && stateUI.sales.isNotEmpty()) {
-                HeaderRowUI("Latest", )
+                HeaderRowUI(stringResource(R.string.latest))
                 LazyRow() {
                     items(items = stateUI.latests) {
                         ItemLatestUI(it)
                     }
                 }
-                HeaderRowUI("Flash Sale", modifier=Modifier.padding(top=17.dp))
+                HeaderRowUI(stringResource(R.string.flash_sale), modifier=Modifier.padding(top=17.dp))
                 LazyRow() {
                     items(items = stateUI.sales) {
                         ItemSaleUI(it, onClickSale)
                     }
                 }
             }
-            HeaderRowUI("Brands", modifier=Modifier.padding(top=17.dp))
+            HeaderRowUI(stringResource(R.string.brands), modifier=Modifier.padding(top=17.dp))
             LazyRow() {
                 items(items = stateUI.brands) {
                     ItemBrandUI(it)
@@ -241,6 +192,8 @@ fun HomeScreenUI(
 
 }
 
+
+
 @Composable
 fun HeaderRowUI(title: String, modifier: Modifier=Modifier) {
     Row(
@@ -251,7 +204,9 @@ fun HeaderRowUI(title: String, modifier: Modifier=Modifier) {
             .padding(end = 8.dp)
     ) {
         Text(text = title, style = MaterialTheme.typography.h6)
-        Text(text = "View all", style = MaterialTheme.typography.overline)
+        Text(text = stringResource(
+            R.string.view_all
+        ), style = MaterialTheme.typography.overline)
     }
 }
 

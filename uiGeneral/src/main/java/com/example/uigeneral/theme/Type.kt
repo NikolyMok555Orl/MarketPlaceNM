@@ -1,5 +1,6 @@
 package com.example.uigeneral.theme
 
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Typography
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -34,7 +35,7 @@ val Typography = Typography(
             Font(R.font.poppins)
         ),
         lineHeight = 13.sp,
-        color = Color(0xFF808080)
+        color = onSecondary
     ),
     h6 = TextStyle(
         fontWeight = FontWeight.W500,

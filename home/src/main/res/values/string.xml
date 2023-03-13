@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="location">Location</string>
+    <string name="search_hint">What are you looking for ?</string>
+    <string name="view_all">View all</string>
+    <string name="latest">Latest</string>
+    <string name="flash_sale">Flash Sale</string>
+    <string name="brands">Brands</string>
+</resources>

@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -99,13 +100,15 @@ fun ItemScreenUI(
                     Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "to back")
                 }
                 Column(
-                    modifier = Modifier.offset(x=18.dp)
+                    modifier = Modifier
+                        .offset(x = 18.dp)
                         .padding(bottom = 28.dp)
                         .align(Alignment.BottomEnd)
                 ) {
                     Surface(
                         color = Color(0xFFE5E9EF),
-                        modifier = Modifier.size(width = 42.dp, height = 95.dp)
+                        modifier = Modifier
+                            .size(width = 42.dp, height = 95.dp)
                             .clip(RoundedCornerShape(14.dp))
                     ) {
                         Column(
@@ -189,7 +192,7 @@ fun ItemScreenUI(
                     style = MaterialTheme.typography.h2,
                     fontWeight = FontWeight.W400,
                     fontSize = 9.sp,
-                    color = Color(0xFF808080)
+                    color = MaterialTheme.colors.onSecondary
                 )
                 //Рейтинг
                 Row(modifier = Modifier.padding(top = 9.dp, end = 13.dp)) {
@@ -205,13 +208,13 @@ fun ItemScreenUI(
                         fontSize = 9.sp
                     )
                     Text(
-                        text = "(${item.number_of_reviews} reviews)",
+                        text = "(${item.number_of_reviews} ${stringResource(R.string.reviews)})",
                         style = MaterialTheme.typography.h2,
                         fontWeight = FontWeight.W400,
                         fontSize = 9.sp
                     )
                 }
-                Text(text = "Color:", style = MaterialTheme.typography.h2, fontWeight = FontWeight.W600, fontSize = 10.sp, color = Color(0xFF737373), modifier = Modifier.padding(end = 11.dp))
+                Text(text = stringResource(R.string.color), style = MaterialTheme.typography.h2, fontWeight = FontWeight.W600, fontSize = 10.sp, color = Color(0xFF737373), modifier = Modifier.padding(end = 11.dp))
                 Row(modifier = Modifier.padding(end = 20.dp)) {
                     item.colors.forEachIndexed { index, color ->
                         ColorItemUI(
@@ -257,10 +260,12 @@ private fun BottonItemToCart(
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp)
         ) {
-            Column(modifier = Modifier.weight(1f).padding(bottom = 25.dp)) {
+            Column(modifier = Modifier
+                .weight(1f)
+                .padding(bottom = 25.dp)) {
                 Text(
-                    "Quantity: ",
-                    style = MaterialTheme.typography.body2, color = Color(0xFF808080),
+                    stringResource(R.string.quantity),
+                    style = MaterialTheme.typography.body2, color = MaterialTheme.colors.onSecondary,
                     fontSize = 9.sp, modifier = Modifier.padding(top = 14.dp)
                 )
                 Row(modifier = Modifier.padding(top = 10.dp)) {
@@ -302,7 +307,9 @@ private fun BottonItemToCart(
                     }
                 }
             }
-            Row(modifier = Modifier.weight(1f).padding(top=19.dp,bottom = 22.dp)) {
+            Row(modifier = Modifier
+                .weight(1f)
+                .padding(top = 19.dp, bottom = 22.dp)) {
                 Button(
                     onClick = {
                         if (itemStateUI.quantity > 0) {
@@ -310,7 +317,8 @@ private fun BottonItemToCart(
                         } else {
                             changeQuantity(1.0)
                         }
-                    }, modifier = Modifier.clip(RoundedCornerShape(15.dp))
+                    }, modifier = Modifier
+                        .clip(RoundedCornerShape(15.dp))
                         .width(170.dp)
                         .height(44.dp)
                 ) {
@@ -325,7 +333,7 @@ private fun BottonItemToCart(
                             fontWeight = FontWeight.W600, fontSize = 8.sp
                         )
                         Text(
-                            text = "ADD TO CART",
+                            text = stringResource(id = R.string.addCart),
                             style = MaterialTheme.typography.h2,
                             fontWeight = FontWeight.W600,
                             fontSize = 8.sp,

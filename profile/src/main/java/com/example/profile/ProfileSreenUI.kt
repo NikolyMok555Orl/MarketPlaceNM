@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -121,9 +122,10 @@ fun ProfileScreenUI(state: ProfileStateUI, toBack:()->Unit, changePhoto: () -> U
                     ), contentScale = ContentScale.Crop
             )
             Text(
-                text = "Change photo",
+                text = stringResource(id = R.string.change_photo),
                 fontWeight = FontWeight.W500,
                 fontSize = 8.sp,
+                color = MaterialTheme.colors.onSecondary,
                 modifier = Modifier
                     .clickable {
                         changePhoto()
@@ -132,7 +134,7 @@ fun ProfileScreenUI(state: ProfileStateUI, toBack:()->Unit, changePhoto: () -> U
             )
 
             Text(
-                text = "Satria Adhi Pradana",
+                text = stringResource(id = R.string.default_name),
                 style = MaterialTheme.typography.h6.copy(fontSize = 15.sp),
                 modifier = Modifier.padding(bottom = 36.dp)
 
@@ -145,12 +147,12 @@ fun ProfileScreenUI(state: ProfileStateUI, toBack:()->Unit, changePhoto: () -> U
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = null)
                 Text(
-                    text = "Upload item",
+                    text =stringResource(R.string.upload_item),
                     style = MaterialTheme.typography.button.copy(fontWeight = FontWeight.SemiBold)
                 )
             }
             Column(modifier=Modifier.padding(top = 14.dp)) {
-                ItemMenuProfileUI(R.drawable.credit_card, "Trade store", {},
+                ItemMenuProfileUI(R.drawable.credit_card, stringResource(R.string.trade_store), {},
                     iconAdd = {
                         Icon(
                             painter = painterResource(id = R.drawable.arrow_next),
@@ -159,31 +161,31 @@ fun ProfileScreenUI(state: ProfileStateUI, toBack:()->Unit, changePhoto: () -> U
                     }
 
                 )
-                ItemMenuProfileUI(R.drawable.credit_card, "Payment method", {}, iconAdd = {
+                ItemMenuProfileUI(R.drawable.credit_card, stringResource(R.string.payment_method), {}, iconAdd = {
                     Icon(
                         painter = painterResource(id = R.drawable.arrow_next),
                         contentDescription = null,
                     )
                 })
-                ItemMenuProfileUI(R.drawable.credit_card, "Balance", {},
+                ItemMenuProfileUI(R.drawable.credit_card, stringResource(R.string.balance), {},
                     iconAdd = {
                         Text(text = "\$ 1593")
                     })
-                ItemMenuProfileUI(R.drawable.credit_card, "Trade history", {}, iconAdd = {
+                ItemMenuProfileUI(R.drawable.credit_card, stringResource(R.string.trade_history), {}, iconAdd = {
                     Icon(
                         painter = painterResource(id = R.drawable.arrow_next),
                         contentDescription = null,
                     )
                 })
-                ItemMenuProfileUI(R.drawable.group_92, "Restore Purchase", {},
+                ItemMenuProfileUI(R.drawable.group_92, stringResource(R.string.restore_purchase), {},
                     iconAdd = {
                         Icon(
                             painter = painterResource(id = R.drawable.arrow_next),
                             contentDescription = null,
                         )
                     })
-                ItemMenuProfileUI(R.drawable.help, "Help", {})
-                ItemMenuProfileUI(R.drawable.log_out, "Log out", logout)
+                ItemMenuProfileUI(R.drawable.help, stringResource(R.string.help), {})
+                ItemMenuProfileUI(R.drawable.log_out, stringResource(R.string.log_out), logout)
 
             }
         }
@@ -205,7 +207,7 @@ fun ProfileHeader(onClickBack: () -> Unit) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "icon back")
         }
         Text(
-            text = "Profile",
+            text = stringResource(id = R.string.profile),
             modifier = Modifier.align(Alignment.Center),
             style = MaterialTheme.typography.h3.copy(fontSize = 15.sp),
         )

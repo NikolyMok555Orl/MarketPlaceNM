@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -92,7 +93,7 @@ fun LoginScreenUI(
         .padding(horizontal = 42.dp)) {
         if(showAlert)
             ErrorDialogUI(error = error ,closeAlert)
-        Text(text = "Welcome back", textAlign = TextAlign.Center,
+        Text(text = stringResource(R.string.welcome_back), textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h5,modifier= Modifier
                 .fillMaxWidth()
                 .padding(bottom = 72.dp))
@@ -101,7 +102,7 @@ fun LoginScreenUI(
             value = state.firstName,
             changeFirstName,
             placeholder ={Text(
-                text = "First name",
+                text =  stringResource(R.string.first_name),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.overline.copy(fontSize = 11.sp),
                 modifier = Modifier.fillMaxWidth()
@@ -113,7 +114,7 @@ fun LoginScreenUI(
             value = state.password,
             changePassword,
             placeholder ={Text(
-                text = "Password",
+                text = stringResource(R.string.password),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.overline.copy(fontSize = 11.sp),
                 modifier = Modifier.fillMaxWidth()
@@ -130,7 +131,7 @@ fun LoginScreenUI(
             modifier = Modifier.padding(bottom = 35.dp)
         )
 
-        MainButtonUI("Login", toLogin, modifier = Modifier
+        MainButtonUI(stringResource(R.string.login), toLogin, modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = 15.dp))
     }
