@@ -34,7 +34,7 @@ import com.example.item.ui.component.ShortImageUI
 import com.example.remote.api.Api
 import com.example.remote.js.DetailsItem
 import com.example.remote.repository.AppNetworkRepo
-import com.example.uigeneral.theme.MarketPlaceNMTheme
+import com.example.uigeneral.theme.*
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -106,7 +106,7 @@ fun ItemScreenUI(
                         .align(Alignment.BottomEnd)
                 ) {
                     Surface(
-                        color = Color(0xFFE5E9EF),
+                        color = AppIconButton,
                         modifier = Modifier
                             .size(width = 42.dp, height = 95.dp)
                             .clip(RoundedCornerShape(14.dp))
@@ -119,7 +119,7 @@ fun ItemScreenUI(
                                 Icon(
                                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_like),
                                     contentDescription = null,
-                                    tint=Color(0xFF545589),
+                                    tint=MaterialTheme.colors.primaryVariant,
                                     modifier = Modifier.size(width = 15.dp, height = 13.dp)
                                 )
                             }
@@ -135,7 +135,7 @@ fun ItemScreenUI(
                                 Icon(
                                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_share),
                                     contentDescription = null,
-                                    tint=Color(0xFF545589),
+                                    tint=MaterialTheme.colors.primaryVariant,
                                     modifier = Modifier.size(width = 16.dp, height = 18.dp)
                                 )
                             }
@@ -177,14 +177,14 @@ fun ItemScreenUI(
                         style = MaterialTheme.typography.h2,
                         fontWeight = FontWeight.W600,
                         fontSize = 17.sp,
-                        color = Color(0xFF161826)
+                        color = DetailsTitle
                     )
                     Text(
                         text = "\$ ${item.price}",
                         style = MaterialTheme.typography.h2,
                         fontWeight = FontWeight.W600,
                         fontSize = 13.sp,
-                        color = Color(0xFF161826)
+                        color = DetailsTitle
                     )
                 }
                 Text(
@@ -214,7 +214,8 @@ fun ItemScreenUI(
                         fontSize = 9.sp
                     )
                 }
-                Text(text = stringResource(R.string.color), style = MaterialTheme.typography.h2, fontWeight = FontWeight.W600, fontSize = 10.sp, color = Color(0xFF737373), modifier = Modifier.padding(end = 11.dp))
+                Text(text = stringResource(R.string.color), style = MaterialTheme.typography.h2,
+                    fontWeight = FontWeight.W600, fontSize = 10.sp, color = DetailsColor, modifier = Modifier.padding(end = 11.dp))
                 Row(modifier = Modifier.padding(end = 20.dp)) {
                     item.colors.forEachIndexed { index, color ->
                         ColorItemUI(
@@ -271,7 +272,7 @@ private fun BottonItemToCart(
                 Row(modifier = Modifier.padding(top = 10.dp)) {
                     Button(
                         colors = ButtonDefaults.buttonColors(
-                            backgroundColor = Color(0xFF4E55D7),
+                            backgroundColor = MaterialTheme.colors.primary,
                             contentColor = Color.White
                         ),
                         shape = RoundedCornerShape(8.dp),
@@ -290,7 +291,7 @@ private fun BottonItemToCart(
                     Spacer(modifier = Modifier.width(20.dp))
                     Button(
                         colors = ButtonDefaults.buttonColors(
-                            backgroundColor = Color(0xFF4E55D7),
+                            backgroundColor = MaterialTheme.colors.primary,
                             contentColor = Color.White
                         ),
                         shape = RoundedCornerShape(8.dp),
@@ -329,7 +330,7 @@ private fun BottonItemToCart(
                     ) {
                         Text(
                             text = "# ${itemStateUI.getSum()}",
-                            color = Color(0xFF99A0FF), style = MaterialTheme.typography.h2,
+                            color = AddToCartCount, style = MaterialTheme.typography.h2,
                             fontWeight = FontWeight.W600, fontSize = 8.sp
                         )
                         Text(

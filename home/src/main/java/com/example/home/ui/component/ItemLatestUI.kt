@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.remote.js.Latest
+import com.example.uigeneral.theme.CategoryBack
 import com.example.uigeneral.theme.MarketPlaceNMTheme
 
 @Composable
@@ -33,7 +34,7 @@ fun ItemLatestUI(latest: com.example.remote.js.Latest, modifier: Modifier=Modifi
             Box(modifier = Modifier
                 .clip(RoundedCornerShape(5.dp))
                 .height(12.dp)
-                .background(Color(0xD9C4C4C4)), contentAlignment = Alignment.Center) {
+                .background(CategoryBack), contentAlignment = Alignment.Center) {
                 Text(text = latest.category, modifier = Modifier.padding(horizontal = 7.dp),
                     style = MaterialTheme.typography.h2, fontSize = 6.sp, fontWeight = FontWeight.W600)
             }
@@ -47,9 +48,9 @@ fun ItemLatestUI(latest: com.example.remote.js.Latest, modifier: Modifier=Modifi
         }
         IconButton(onClick = { /*TODO*/ }, modifier = Modifier.align(Alignment.BottomEnd).padding(5.dp).clip(
             CircleShape
-        ).size(20.dp).background(Color(0xD9E5E9EF))) {
+        ).size(20.dp).background(CategoryBack)) {
             Icon(imageVector = Icons.Default.Add, contentDescription = "add to cart button latest",
-                modifier = Modifier.size(8.dp), tint = Color(0xD9545589) )
+                modifier = Modifier.size(8.dp), tint = MaterialTheme.colors.primary )
         }
 
 

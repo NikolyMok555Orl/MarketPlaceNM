@@ -26,6 +26,9 @@ import coil.compose.AsyncImage
 import com.example.remote.js.ItemSale
 import com.example.uigeneral.theme.MarketPlaceNMTheme
 import  com.example.home.R
+import com.example.uigeneral.theme.AppIconButton
+import com.example.uigeneral.theme.CategoryBack
+import com.example.uigeneral.theme.Discount
 
 
 @Composable
@@ -41,7 +44,7 @@ fun ItemSaleUI(sale: ItemSale, onClick:(sale: ItemSale)->Unit, modifier:Modifier
             Box(modifier = Modifier
                 .clip(RoundedCornerShape(5.dp))
                 .height(12.dp)
-                .background(Color(0xD9C4C4C4)), contentAlignment = Alignment.Center) {
+                .background(CategoryBack), contentAlignment = Alignment.Center) {
                 Text(text = sale.category, modifier = Modifier.padding(horizontal = 9.dp),
                     style = MaterialTheme.typography.h2, fontSize = 9.sp, fontWeight = FontWeight.W600)
             }
@@ -63,13 +66,13 @@ fun ItemSaleUI(sale: ItemSale, onClick:(sale: ItemSale)->Unit, modifier:Modifier
                             CircleShape
                         )
                         .size(28.dp)
-                        .background(Color(0xFFE5E9EF))
+                        .background(AppIconButton)
                 ) {
                     Icon(
                         imageVector = Icons.Default.FavoriteBorder,
                         contentDescription = "add to favorite",
                         modifier = Modifier.size(12.dp),
-                        tint = Color(0xD9545589)
+                        tint = MaterialTheme.colors.primary
                     )
                 }
             }
@@ -78,9 +81,9 @@ fun ItemSaleUI(sale: ItemSale, onClick:(sale: ItemSale)->Unit, modifier:Modifier
                     CircleShape
                 )
                 .size(35.dp)
-                .background(Color(0xFFE5E9EF))) {
+                .background(AppIconButton)) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "add to cart button latest",
-                    modifier = Modifier.size(13.dp), tint = Color(0xD9545589) )
+                    modifier = Modifier.size(13.dp), tint = MaterialTheme.colors.primary )
             }
         }
 
@@ -94,7 +97,7 @@ fun ItemSaleUI(sale: ItemSale, onClick:(sale: ItemSale)->Unit, modifier:Modifier
         Box(modifier = Modifier
             .padding(top = 7.dp, end = 8.dp)
             .clip(RoundedCornerShape(9.dp))
-            .background(Color(0xFFF93A3A))
+            .background(Discount)
             .width(46.dp)
             .height(18.dp)
 

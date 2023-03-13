@@ -27,6 +27,7 @@ import com.example.navigation.Screen
 import com.example.store.ShopDb
 import com.example.store.UserRepositoryImpl
 import com.example.uigeneral.component.ErrorDialogUI
+import com.example.uigeneral.theme.AppLink
 import com.example.uigeneral.theme.MarketPlaceNMTheme
 
 
@@ -168,7 +169,7 @@ fun SignScreenUI(
                 ) {
                     Text(
                         text = stringResource(R.string.log_in),
-                        style = MaterialTheme.typography.overline.copy(color = Color(0xFF254FE6))
+                        style = MaterialTheme.typography.overline.copy(color = AppLink)
                     )
                 }
             }

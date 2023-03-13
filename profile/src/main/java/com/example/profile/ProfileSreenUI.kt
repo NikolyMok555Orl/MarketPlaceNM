@@ -37,6 +37,7 @@ import com.example.profile.R
 import com.example.store.ShopDb
 import com.example.store.UserRepositoryImpl
 import com.example.uigeneral.component.ErrorDialogUI
+import com.example.uigeneral.theme.Border
 import com.example.uigeneral.theme.MarketPlaceNMTheme
 import kotlinx.coroutines.launch
 
@@ -80,7 +81,7 @@ fun ProfileScreenUI(
 
 
     ProfileScreenUI(state = state.value, toBack={
-                                                navController.popBackStack()
+                                               // navController.popBackStack()
     }, changePhoto = {
         contract.launch(
             PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly),
@@ -117,7 +118,7 @@ fun ProfileScreenUI(state: ProfileStateUI, toBack:()->Unit, changePhoto: () -> U
                     .size(61.dp)
                     .border(
                         1.dp, Color(
-                            0xFFC0C0C0
+                            Border.value
                         ), CircleShape
                     ), contentScale = ContentScale.Crop
             )

@@ -16,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.profile.R
+import com.example.uigeneral.theme.GreyIconBack
 import com.example.uigeneral.theme.MarketPlaceNMTheme
 
 
@@ -37,7 +38,7 @@ fun ItemMenuProfileUI(
                 )
                 .size(40.dp)
                 .background(
-                    Color(0xFFEEEFF4)
+                    GreyIconBack
                 )
                 .padding(10.dp)
         )

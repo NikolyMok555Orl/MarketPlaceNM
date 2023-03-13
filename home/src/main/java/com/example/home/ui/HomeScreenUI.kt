@@ -45,6 +45,7 @@ import com.example.remote.api.ApiApp
 import com.example.remote.repository.AppNetworkRepo
 import com.example.store.ShopDb
 import com.example.store.UserRepositoryImpl
+import com.example.uigeneral.theme.GreyBorder
 import com.example.uigeneral.theme.MarketPlaceNMTheme
 
 
@@ -121,7 +122,7 @@ fun HomeScreenUI(
                 model = if (!stateUI.user?.avatar.isNullOrBlank()) Uri.parse(stateUI.user?.avatar)
                 else com.example.uigeneral.R.drawable.avatar, contentDescription = "Ава", Modifier
                     .clip(CircleShape)
-                    .border(1.dp, Color(0xFF4E4D4D), CircleShape)
+                    .border(1.dp, GreyBorder, CircleShape)
                     .size(31.dp),
                 contentScale = ContentScale.Crop
             )

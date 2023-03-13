@@ -20,6 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.home.R
+import com.example.uigeneral.theme.CategoryText
+import com.example.uigeneral.theme.GreyIconBack
 import com.example.uigeneral.theme.MarketPlaceNMTheme
 
 @Composable
@@ -37,7 +39,7 @@ fun ItemGroupUI(@DrawableRes img: Int, title: String, modifier: Modifier = Modif
                 .size(42.dp, 38.dp)
                 .clip(
                     CircleShape
-                ).background(color = Color(0xFFEEEFF4))
+                ).background(color = GreyIconBack)
                 .padding(9.dp)
         )
         Text(
@@ -45,7 +47,7 @@ fun ItemGroupUI(@DrawableRes img: Int, title: String, modifier: Modifier = Modif
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.overline.copy(
                 fontSize = 8.sp,
-                color = Color(0xFFA6A7AB),
+                color = CategoryText,
                 fontFamily = FontFamily(
                     Font(com.example.uigeneral.R.font.poppins)
                 )

@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 private val LightColorPalette = lightColors(
     primary = colorPrimary,
     secondary = secondary,
-
+    primaryVariant=primaryVariant,
     background = background,
     surface = surface,
     onPrimary = onPrimary,

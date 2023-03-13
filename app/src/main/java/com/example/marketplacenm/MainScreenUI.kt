@@ -25,6 +25,8 @@ import com.example.authorization.ui.SignScreenUI
 import com.example.home.ui.HomeScreenUI
 import com.example.item.ui.ItemScreenUI
 import com.example.marketplacenm.profile.ui.ProfileScreenUI
+import com.example.uigeneral.theme.GreyIcon
+import com.example.uigeneral.theme.GreyIconBack
 import com.example.uigeneral.theme.MarketPlaceNMTheme
 
 
@@ -87,7 +89,7 @@ fun MainScreen(navController: NavHostController = rememberNavController(), modif
 
 @Composable
 private fun AppBottonNavigationUI(navController: NavHostController) {
-    BottomNavigation(contentColor = Color(0xFF909090),backgroundColor = Color(0xFFFFFFFF),
+    BottomNavigation(contentColor = GreyIcon,backgroundColor = MaterialTheme.colors.onPrimary,
         modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp))
             .height(63.dp)) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -99,9 +101,8 @@ private fun AppBottonNavigationUI(navController: NavHostController) {
                     Icon(
                         painter = painterResource(id = screen.resourceId),
                         contentDescription = null,
-                       // tint = if (selected == screen.route) Color(0xFF737297) else Color(0xFF909090),
                         modifier = Modifier.size(40.dp).clip(CircleShape).
-                        background( if (selected == screen.route) Color(0xFFEEEFF4) else Color(0xFFFFFFFF))
+                        background( if (selected == screen.route) GreyIconBack else MaterialTheme.colors.onPrimary)
                             .padding(12.dp)
                     )
                 },
@@ -123,7 +124,7 @@ private fun AppBottonNavigationUI(navController: NavHostController) {
                     }
                 },
                 selectedContentColor = MaterialTheme.colors.primary,
-                unselectedContentColor = Color(0xFF909090)
+                unselectedContentColor = GreyIcon
             )
         }
     }
