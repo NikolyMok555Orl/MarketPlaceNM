@@ -10,7 +10,7 @@ buildscript {
         navigation_compose= '2.6.0-alpha06'
 
         //dagger - hilt
-        hilt_version = '2.44.2'
+        hilt_version = '2.44'
         hilt_navigation_compose = '1.0.0'
 
         //tests
@@ -29,6 +29,10 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.8.0' apply false
     id 'org.jetbrains.kotlin.multiplatform' version '1.8.10' apply false
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.10' apply false
+    id 'com.google.dagger.hilt.android' version "$hilt_version" apply false
+
+
+
 
 }
 

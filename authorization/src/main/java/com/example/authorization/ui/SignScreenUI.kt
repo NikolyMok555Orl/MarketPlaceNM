@@ -17,6 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -35,7 +36,8 @@ import com.example.uigeneral.theme.MarketPlaceNMTheme
 fun SignScreenUI(
     navController: NavController = rememberNavController(),
     context: Context = LocalContext.current,
-    singVM: SignVM = viewModel(factory = SignVM.getProvideFactory(UserRepositoryImpl(ShopDb.getDatabase(context)))),
+    //singVM: SignVM = viewModel(factory = SignVM.getProvideFactory(UserRepositoryImpl(ShopDb.getDatabase(context)))),
+    singVM: SignVM = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
 

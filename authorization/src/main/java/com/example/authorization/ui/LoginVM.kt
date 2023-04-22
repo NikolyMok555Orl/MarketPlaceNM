@@ -5,14 +5,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.store.UserRepository
 import com.example.store.UserRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
+import javax.inject.Inject
 
-class LoginVM(private val userRepo: UserRepository):ViewModel() {
+@HiltViewModel
+class LoginVM @Inject constructor(private val userRepo: UserRepository):ViewModel() {
 
 
 
@@ -67,7 +70,7 @@ class LoginVM(private val userRepo: UserRepository):ViewModel() {
     }
     companion object{
 
-        fun getProvideFactory(
+      /*  fun getProvideFactory(
             userRepo: UserRepository
         ): ViewModelProvider.Factory =
             object : ViewModelProvider.Factory {
@@ -80,7 +83,7 @@ class LoginVM(private val userRepo: UserRepository):ViewModel() {
                     }
                     throw  IllegalArgumentException("ViewModel не ProfileModel")
                 }
-            }
+            }*/
     }
 
 }

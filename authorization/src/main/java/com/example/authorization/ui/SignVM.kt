@@ -6,11 +6,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.store.enity.User
 import com.example.marketplacenm.util.isEmailValid
 import com.example.store.UserRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
+import javax.inject.Inject
 
-class SignVM(private val userRepo: UserRepository) : ViewModel() {
+@HiltViewModel
+class SignVM @Inject constructor(private val userRepo: UserRepository) : ViewModel() {
 
 
     private var _state: MutableStateFlow<SignStateUI> = MutableStateFlow(SignStateUI("", "", ""))
@@ -98,7 +101,7 @@ class SignVM(private val userRepo: UserRepository) : ViewModel() {
 
     companion object {
 
-        fun getProvideFactory(
+       /* fun getProvideFactory(
             userRepo: UserRepository
         ): ViewModelProvider.Factory =
             object : ViewModelProvider.Factory {
@@ -111,7 +114,7 @@ class SignVM(private val userRepo: UserRepository) : ViewModel() {
                     }
                     throw IllegalArgumentException("ViewModel не ProfileModel")
                 }
-            }
+            }*/
 
     }
 }

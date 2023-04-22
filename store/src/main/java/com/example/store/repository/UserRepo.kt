@@ -1,6 +1,7 @@
 package com.example.store;
 
 import com.example.marketplacenm.util.ResultResponse
+import com.example.store.db.UserDao
 import com.example.store.enity.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -27,11 +28,11 @@ interface UserRepository {
 }
 
 
-class UserRepositoryImpl (private val db: ShopDb) : UserRepository {
+class UserRepositoryImpl @Inject constructor(private val userDao: UserDao) : UserRepository {
 
     override fun getUserByFirstName(firstName: String) = flow<ResultResponse<User?, String>> {
         kotlin.runCatching {
-            db.userDao.getUserByFirstName(firstName)
+            userDao.getUserByFirstName(firstName)
         }.onSuccess {
             emit(ResultResponse(true, it, null))
         }.onFailure {
@@ -42,7 +43,7 @@ class UserRepositoryImpl (private val db: ShopDb) : UserRepository {
 
     override suspend fun insertUser(user: User) = flow<ResultResponse<Nothing, String>> {
         kotlin.runCatching {
-            db.userDao.insertUser(user)
+            userDao.insertUser(user)
         }.onSuccess {
             emit(ResultResponse(true, null, null))
             //TODO может отдельно
@@ -55,7 +56,7 @@ class UserRepositoryImpl (private val db: ShopDb) : UserRepository {
 
     override suspend fun deleteUser(user: User) = flow<ResultResponse<Nothing, String>> {
         kotlin.runCatching {
-             db.userDao.deleteUser(user)
+             userDao.deleteUser(user)
         }.onSuccess {
              emit(ResultResponse(true, null, null))
         }.onFailure {
@@ -66,7 +67,7 @@ class UserRepositoryImpl (private val db: ShopDb) : UserRepository {
 
     override suspend fun updateAvatar(user: User)  = flow<ResultResponse<Nothing, String>> {
         kotlin.runCatching {
-             db.userDao.update(user)
+             userDao.update(user)
         }.onSuccess {
              emit(ResultResponse(true, null, null))
         }.onFailure {
