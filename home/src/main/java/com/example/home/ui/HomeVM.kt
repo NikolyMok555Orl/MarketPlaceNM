@@ -13,12 +13,15 @@ import com.example.home.ui.component.getBrands
 import com.example.home.ui.component.getGroup
 import com.example.store.UserRepository
 import com.example.store.enity.User
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
+import javax.inject.Inject
 
-class HomeVM(private val networkRepo: NetworkRepo ,
+@HiltViewModel
+class HomeVM @Inject constructor(private val networkRepo: NetworkRepo ,
              private val userRepository: UserRepository
 ):ViewModel() {
 

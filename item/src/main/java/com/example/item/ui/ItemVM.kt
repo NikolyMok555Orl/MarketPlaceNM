@@ -6,14 +6,17 @@ import androidx.lifecycle.viewModelScope
 import com.example.remote.js.DetailsItem
 import com.example.remote.repository.AppNetworkRepo
 import com.example.remote.repository.NetworkRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
+import javax.inject.Inject
 
 
-class ItemVM(private val repo: NetworkRepo
+@HiltViewModel
+class ItemVM @Inject constructor(private val repo: NetworkRepo
 ):ViewModel() {
 
 

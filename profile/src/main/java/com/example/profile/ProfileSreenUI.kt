@@ -26,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -45,8 +46,9 @@ import kotlinx.coroutines.launch
 @Composable
 fun ProfileScreenUI(
     navController: NavController = rememberNavController(), context:Context= LocalContext.current,
-    profileVM: ProfileVM =
-        viewModel(factory = ProfileVM.getProvideFactory(UserRepositoryImpl(ShopDb.getDatabase(context)))),
+   // profileVM: ProfileVM = viewModel(factory = ProfileVM.getProvideFactory(UserRepositoryImpl(ShopDb.getDatabase(context)))),
+    profileVM: ProfileVM = hiltViewModel(),
+
     modifier: Modifier = Modifier
 ) {
     val state=profileVM.state.collectAsState()

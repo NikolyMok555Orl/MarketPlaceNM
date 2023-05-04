@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 
 }
 
@@ -48,6 +49,9 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    kapt {
+        correctErrorTypes true
+    }
 }
 
 dependencies {
@@ -77,6 +81,12 @@ dependencies {
     //Перезагрузка
     implementation "com.google.accompanist:accompanist-swiperefresh:0.24.13-rc"
 
+    //di Даггер/хилт
+    implementation "com.google.dagger:dagger:$hilt_version"
+    kapt "com.google.dagger:dagger-compiler:$hilt_version"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
 
     implementation project(':authorization')
     implementation project(':uiGeneral')

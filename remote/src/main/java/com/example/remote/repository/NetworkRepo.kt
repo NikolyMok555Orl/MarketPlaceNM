@@ -9,6 +9,7 @@ import com.example.remote.js.Latestes
 import com.example.marketplacenm.util.NetworkResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
+import javax.inject.Inject
 
 
 interface NetworkRepo  {
@@ -21,7 +22,7 @@ interface NetworkRepo  {
 
 
 
-class AppNetworkRepo(private val api: ApiApp): NetworkRepo {
+class AppNetworkRepo @Inject constructor(private val api: ApiApp): NetworkRepo {
 
     override fun getLatest() = flow {
         kotlin.runCatching {

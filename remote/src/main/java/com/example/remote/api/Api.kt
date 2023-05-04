@@ -35,7 +35,7 @@ interface Api: ApiApp {
 
                 private var api: Api? = null
 
-                private fun createApi() {
+              /*  private fun createApi() {
                         val interceptor : HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
                                 this.level = HttpLoggingInterceptor.Level.BODY
                         }
@@ -64,7 +64,7 @@ interface Api: ApiApp {
                         if (api == null)
                                 createApi()
                         return api!!
-                }
+                }*/
         }
 
 }

@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -35,9 +37,19 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion kotlin_compiler_version
     }
+
+    kapt {
+        correctErrorTypes true
+    }
 }
 
 dependencies {
+
+    implementation project(':navigation')
+    implementation project(':uiGeneral')
+    implementation project(':remote')
+    implementation project(':store')
+    implementation project(':util')
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -57,11 +69,15 @@ dependencies {
     //библа для загрузки фото
     implementation "io.coil-kt:coil-compose:$coil_version"
 
-    implementation project(':navigation')
-    implementation project(':uiGeneral')
-    implementation project(':remote')
-    implementation project(':store')
-    implementation project(':util')
+
+    //di Даггер/хилт
+    implementation "com.google.dagger:dagger:$hilt_version"
+    kapt "com.google.dagger:dagger-compiler:$hilt_version"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+
+
 
 
 }

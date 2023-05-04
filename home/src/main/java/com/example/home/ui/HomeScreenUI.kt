@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.PopupProperties
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -53,8 +54,9 @@ import com.example.uigeneral.theme.MarketPlaceNMTheme
 fun HomeScreenUI(
     navController: NavController = rememberNavController(),
     context: Context = LocalContext.current,
-    homeVM: HomeVM = viewModel(factory = HomeVM
-        .getProvideFactory(AppNetworkRepo(Api.get()), UserRepositoryImpl(ShopDb.getDatabase(context)))),
+   /* homeVM: HomeVM = viewModel(factory = HomeVM
+        .getProvideFactory(AppNetworkRepo(Api.get()), UserRepositoryImpl(ShopDb.getDatabase(context)))),*/
+    homeVM: HomeVM = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
 
